@@ -6,7 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="io.dwak.kotlinsample.MainActivity"
+    tools:context="io.dwak.kotlinsample.ui.MainActivity"
     tools:showIn="@layout/activity_main2">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/note_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

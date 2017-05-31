@@ -1,4 +1,4 @@
-package io.dwak.kotlinsample
+package io.dwak.kotlinsample.data
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase

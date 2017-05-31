@@ -1,20 +1,13 @@
 package io.dwak.kotlinsample
 
-import android.app.Activity
-import android.app.Application
 import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
+import dagger.android.support.DaggerApplication
+import io.dwak.kotlinsample.inject.component.DaggerAppComponent
 
-class NoteApplication : Application(), HasActivityInjector {
-  @Inject lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
-  override fun onCreate() {
-    super.onCreate()
-  }
+class NoteApplication : DaggerApplication() {
 
-  override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector
+  override fun applicationInjector(): AndroidInjector<out DaggerApplication>
+    = DaggerAppComponent.builder().create(this)
+
 }

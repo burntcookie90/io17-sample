@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 'android-O'
+    buildToolsVersion "26.0.0-rc2"
     defaultConfig {
         applicationId "io.dwak.kotlinsample"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 'O'
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,15 +19,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
+kotlin {
+    experimental {
+        coroutines 'enable'
+    }
+}
+
+def daggerVersion = '2.11'
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.15'
+    compile 'com.android.support:appcompat-v7:26.0.0-beta1'
+    compile 'com.android.support:design:26.0.0-beta1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "android.arch.lifecycle:runtime:1.0.0-alpha1"
@@ -36,10 +50,13 @@ dependencies {
     compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
     kapt "android.arch.persistence.room:compiler:1.0.0-alpha1"
 
-    compile 'com.google.dagger:dagger:2.11-rc2'
-    kapt 'com.google.dagger:dagger-compiler:2.11-rc2'
-    compile 'com.google.dagger:dagger-android:2.11-rc2'
-    compile 'com.google.dagger:dagger-android-support:2.11-rc2' // if you use the support libraries
-    kapt 'com.google.dagger:dagger-android-processor:2.11-rc2'
-    compile 'com.android.support:design:25.3.1'
+
+    compile "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    compile "com.google.dagger:dagger-android:$daggerVersion"
+    compile "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+    kapt 'io.dwak:adapter-generator-processor:0.2-SNAPSHOT'
+    compile 'io.dwak:adapter-generator-annotations:0.2-SNAPSHOT'
 }

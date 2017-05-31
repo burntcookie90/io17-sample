@@ -1,4 +1,4 @@
-package io.dwak.kotlinsample
+package io.dwak.kotlinsample.data
 
 import android.arch.lifecycle.LiveData
 
