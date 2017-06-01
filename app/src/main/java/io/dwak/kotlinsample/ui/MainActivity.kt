@@ -2,6 +2,8 @@ package io.dwak.kotlinsample.ui
 
 import android.app.Activity
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
@@ -16,7 +18,11 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-  @Inject lateinit var noteViewModel: NoteViewModel
+  @Inject lateinit var factory: ViewModelProvider.Factory
+
+  val noteViewModel: NoteViewModel by lazy {
+    ViewModelProviders.of(this, factory)[NoteViewModelImpl::class.java]
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
