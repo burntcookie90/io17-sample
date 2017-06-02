@@ -57,6 +57,6 @@ dependencies {
     compile "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
-    kapt 'io.dwak:adapter-generator-processor:0.2-SNAPSHOT'
-    compile 'io.dwak:adapter-generator-annotations:0.2-SNAPSHOT'
+    kapt 'io.dwak:adapter-generator-processor:0.3-SNAPSHOT'
+    compile 'io.dwak:adapter-generator-annotations:0.3-SNAPSHOT'
 }

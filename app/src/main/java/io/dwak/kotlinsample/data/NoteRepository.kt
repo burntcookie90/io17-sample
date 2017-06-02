@@ -15,4 +15,10 @@ class NoteRepository @Inject constructor(val noteDao: NoteDao) : NoteRepo {
       noteDao.insertAll(*note)
     }
   }
+
+  override fun delete(note: Note) {
+    async(CommonPool) {
+      noteDao.delete(note)
+    }
+  }
 }

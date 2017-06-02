@@ -4,6 +4,7 @@ import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
@@ -14,6 +15,7 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
 import io.dwak.kotlinsample.R
+import io.dwak.kotlinsample.data.Note
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -33,7 +35,11 @@ class MainActivity : BaseActivity() {
       layoutManager = LinearLayoutManager(this@MainActivity)
     }
     val adapter = NoteItemViewHolderAdapter()
-        .apply { setOnItemClickListener { toast(it.title) } }
+        .apply {
+          setOnViewHolderClickListener {
+            showActionDialog(get(it.adapterPosition))
+          }
+        }
         .also { noteList.adapter = it }
 
     noteViewModel.notes()
@@ -61,6 +67,18 @@ class MainActivity : BaseActivity() {
         .setNegativeButton("Cancel", null)
         .create()
         .show()
+  }
+
+  private fun showActionDialog(note: Note) {
+    val actions = arrayOf("Delete")
+    AlertDialog.Builder(this)
+        .setItems(actions, { _: DialogInterface, which: Int ->
+          when (actions[which]) {
+            "Delete" -> noteViewModel.delete(note)
+          }
+        })
+        .show()
+
   }
 
 }

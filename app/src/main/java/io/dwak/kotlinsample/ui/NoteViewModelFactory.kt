@@ -9,9 +9,10 @@ class NoteViewModelFactory
 @Inject constructor(val viewmodelMap: @JvmSuppressWildcards Map<Class<*>, Provider<ViewModel>>)
   : ViewModelProvider.Factory {
 
-  override fun <T : ViewModel> create(modelClass: Class<T>): T {
-    return viewmodelMap.filter { it.key.isAssignableFrom(modelClass) }
-        .values
-        .firstOrNull()?.get() as T? ?: throw IllegalStateException("no viewmodel found")
-  }
+  @Suppress("UNCHECKED_CAST")
+  override fun <T : ViewModel> create(modelClass: Class<T>)
+      = viewmodelMap.filter { it.key.isAssignableFrom(modelClass) }
+      .values
+      .firstOrNull()?.get() as T?
+      ?: throw IllegalStateException("no viewmodel found")
 }

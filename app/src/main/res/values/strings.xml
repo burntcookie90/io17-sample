@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">KotlinSample</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="app_name">Notes</string>
+    <string name="notes_activity_title">Notes</string>
 </resources>

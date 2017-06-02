@@ -8,4 +8,6 @@ interface NoteRepo {
   fun allNotes(): LiveData<List<Note>>
 
   fun addNotes(vararg note: Note)
+
+  fun delete(note: Note)
 }
