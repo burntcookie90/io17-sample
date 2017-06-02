@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.Toast
 import io.dwak.kotlinsample.R
 import io.dwak.kotlinsample.data.Note
+import io.dwak.kotlinsample.ext.toast
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -74,15 +75,14 @@ class MainActivity : BaseActivity() {
     AlertDialog.Builder(this)
         .setItems(actions, { _: DialogInterface, which: Int ->
           when (actions[which]) {
-            "Delete" -> noteViewModel.delete(note)
+            "Delete" -> {
+              noteViewModel.delete(note)
+              toast("${note.title} deleted!")
+            }
           }
         })
         .show()
 
   }
 
-}
-
-fun Activity.toast(message: String) {
-  Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
