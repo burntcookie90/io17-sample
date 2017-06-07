@@ -63,7 +63,7 @@ class MainActivity : BaseActivity() {
     AlertDialog.Builder(this)
         .setView(promptView)
         .setPositiveButton("Save", { _, _ ->
-          if(note != null){
+          if (note != null) {
             noteViewModel.update(note.copy(title = "${titleText.text}",
                 contents = "${contents.text}"))
           }
@@ -77,7 +77,7 @@ class MainActivity : BaseActivity() {
   }
 
   private fun showActionDialog(note: Note) {
-    val actions = arrayOf("Edit","Delete")
+    val actions = arrayOf("Edit", "Delete")
     AlertDialog.Builder(this)
         .setItems(actions, { _: DialogInterface, which: Int ->
           when (actions[which]) {
@@ -93,5 +93,4 @@ class MainActivity : BaseActivity() {
         .show()
 
   }
-
 }
