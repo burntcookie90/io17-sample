@@ -12,7 +12,8 @@ import io.dwak.kotlinsample.ui.NoteViewModelImpl
 
 @Module
 abstract class ViewModelModule {
-  @Binds abstract fun bindFactory(noteViewModelFactory: NoteViewModelFactory): ViewModelProvider.Factory
+  @Binds abstract fun bindFactory(noteViewModelFactory: NoteViewModelFactory)
+      : ViewModelProvider.Factory
 
   @IntoMap @ClassKey(NoteViewModel::class)
   @Binds abstract fun bindNoteViewModel(noteViewModelImpl: NoteViewModelImpl): ViewModel

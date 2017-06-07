@@ -2,6 +2,7 @@ package io.dwak.kotlinsample.ui
 
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v4.app.Fragment
@@ -14,10 +15,11 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(), HasFragmentInjector, HasSupportFragmentInjector,
-    LifecycleRegistryOwner
-{
+    LifecycleRegistryOwner {
+
   @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
   @Inject lateinit var frameworkFragmentInjector: DispatchingAndroidInjector<android.app.Fragment>
+  @Inject lateinit var factory: ViewModelProvider.Factory
   @Suppress("LeakingThis") private val lifecycle = LifecycleRegistry(this)
 
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -12,6 +12,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -59,4 +65,7 @@ dependencies {
 
     kapt 'io.dwak:adapter-generator-processor:0.3-SNAPSHOT'
     compile 'io.dwak:adapter-generator-annotations:0.3-SNAPSHOT'
+
+    compile 'com.facebook.stetho:stetho:1.5.0'
 }
+

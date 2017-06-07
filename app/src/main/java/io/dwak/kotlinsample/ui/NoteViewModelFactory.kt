@@ -6,12 +6,12 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class NoteViewModelFactory
-@Inject constructor(val viewmodelMap: @JvmSuppressWildcards Map<Class<*>, Provider<ViewModel>>)
+@Inject constructor(val viewModelMap: @JvmSuppressWildcards Map<Class<*>, Provider<ViewModel>>)
   : ViewModelProvider.Factory {
 
   @Suppress("UNCHECKED_CAST")
   override fun <T : ViewModel> create(modelClass: Class<T>)
-      = viewmodelMap.filter { it.key.isAssignableFrom(modelClass) }
+      = viewModelMap.filter { it.key.isAssignableFrom(modelClass) }
       .values
       .firstOrNull()?.get() as T?
       ?: throw IllegalStateException("no viewmodel found")

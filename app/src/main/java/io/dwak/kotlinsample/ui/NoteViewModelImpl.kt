@@ -13,5 +13,7 @@ class NoteViewModelImpl @Inject constructor(val noteRepo: NoteRepo) : NoteViewMo
     noteRepo.addNotes(Note(title = title, contents = contents))
   }
 
+  override fun update(note: Note) = noteRepo.update(note)
+
   override fun delete(note: Note) = noteRepo.delete(note)
 }

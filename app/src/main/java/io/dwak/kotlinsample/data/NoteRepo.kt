@@ -9,5 +9,7 @@ interface NoteRepo {
 
   fun addNotes(vararg note: Note)
 
+  fun update(note: Note)
+
   fun delete(note: Note)
 }
